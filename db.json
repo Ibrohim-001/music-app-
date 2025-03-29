@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "user123",
+      "email": "user@example.com",
+      "password": "hashed_password",
+      "likedSongs": [2, 5, 8]
+    },
+    {
+      "id": "2",
+      "username": "Ibrohim",
+      "email": "rustamovibrohimjon62@gmail.com",
+      "password": "risolat4",
+      "likedSongs": []
+    },
+    {
+      "id": "3",
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "hashed_password"
+    }
+  ],
+  "songs": [
+    {
+      "id": 1,
+      "title": "Song Name",
+      "artist": "Artist Name",
+      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Traditional%20Chord_first.wav"
+    },
+    {
+      "id": 2,
+      "title": "Skripka",
+      "artist": "Skrtipkachi",
+      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
+    },
+    {
+      "id": 3,
+      "title": "Piano",
+      "artist": "Ambient",
+      "url": "https://cdn.freesound.org/previews/794/794513_9497060-lq.mp3"
+    },
+    {
+      "id": 4,
+      "title": "Yugur",
+      "artist": "Yulduz Usmonova",
+      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
+    },
+    {
+      "id": 5,
+      "title": "Kok Jiguli",
+      "artist": "Saida",
+      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
+    },
+    {
+      "id": 6,
+      "title": "Na Dvoix",
+      "artist": "Dmitriy Pryanov",
+      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
+    }
+  ],
+  "admin": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "hashed_password"
+    }
+  ]
+}
