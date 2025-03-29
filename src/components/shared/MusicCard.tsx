@@ -12,7 +12,6 @@ function MusicCard({ id, artist, title, audio }: MusicCardProps) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    // Check if song is already liked when component mounts
     const likedSongs = JSON.parse(localStorage.getItem("liked") || "[]");
     setIsLiked(likedSongs.includes(id));
   }, [id]);
@@ -21,11 +20,9 @@ function MusicCard({ id, artist, title, audio }: MusicCardProps) {
     let likedSongs = JSON.parse(localStorage.getItem("liked") || "[]");
 
     if (likedSongs.includes(id)) {
-      // Unlike: Remove song from storage
       likedSongs = likedSongs.filter((songId: number) => songId !== id);
       setIsLiked(false);
     } else {
-      // Like: Add song to storage
       likedSongs.push(id);
       setIsLiked(true);
     }

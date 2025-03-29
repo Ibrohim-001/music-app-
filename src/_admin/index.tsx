@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import AudioConverter from "@/components/shared/AudioConvertor";
 import axios from "axios";
+import MusicCard from "@/components/shared/MusicCard";
+import AdminMusicCard from "@/components/shared/AdminCard";
 
 function Admin() {
   const [title, setTitle] = React.useState("");
@@ -18,7 +20,7 @@ function Admin() {
   //     console.log("asdf");
   //   } else {
   //     let res = JSON.parse(localStorage.getItem("auth") || "[]");
-  //     console.log("sd");
+  //     console.log(res);
   //     if (
   //       res[0].username == "admin@example.com" &&
   //       res[0].password == "hashed_password"
@@ -37,6 +39,13 @@ function Admin() {
       setId(item.id + 1);
     });
   };
+  const [data, setData] = React.useState([]);
+  async function getSongs() {
+    setData((await axios("http://localhost:3000/songs")).data);
+  }
+  useEffect(() => {
+    getSongs();
+  }, []);
 
   findLatesIndex();
 
@@ -98,6 +107,17 @@ function Admin() {
             Add Music
           </button>
         </form>
+        <div className="col-span-6 w-[700px] mx-auto flex flex-col gap-10">
+          {data.map((item) => (
+            <AdminMusicCard
+              key={item.id}
+              id={item.id}
+              artist={item.artist}
+              title={item.title}
+              audio={item.url}
+            />
+          ))}
+        </div>
       </main>
     </>
   );

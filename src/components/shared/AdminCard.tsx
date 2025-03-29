@@ -1,4 +1,5 @@
-import { Heart } from "lucide-react";
+import axios from "axios";
+import { Delete, Heart, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type MusicCardProps = {
@@ -8,11 +9,10 @@ type MusicCardProps = {
   artist: string;
 };
 
-function MusicCard({ id, artist, title, audio }: MusicCardProps) {
+function AdminMusicCard({ id, artist, title, audio }: MusicCardProps) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    // Check if song is already liked when component mounts
     const likedSongs = JSON.parse(localStorage.getItem("liked") || "[]");
     setIsLiked(likedSongs.includes(id));
   }, [id]);
@@ -21,17 +21,19 @@ function MusicCard({ id, artist, title, audio }: MusicCardProps) {
     let likedSongs = JSON.parse(localStorage.getItem("liked") || "[]");
 
     if (likedSongs.includes(id)) {
-      // Unlike: Remove song from storage
       likedSongs = likedSongs.filter((songId: number) => songId !== id);
       setIsLiked(false);
     } else {
-      // Like: Add song to storage
       likedSongs.push(id);
       setIsLiked(true);
     }
 
     localStorage.setItem("liked", JSON.stringify(likedSongs));
   };
+
+  async function DeleteCard() {
+    let response = await axios.delete(`http://localhost:3000/songs/${id}`);
+  }
 
   return (
     <div className="flex flex-col">
@@ -44,12 +46,17 @@ function MusicCard({ id, artist, title, audio }: MusicCardProps) {
         <audio className="w-full" controls>
           <source src={audio} type="audio/wav" />
         </audio>
-        <button onClick={toggleLike} className="ml-2">
-          <Heart className={isLiked ? "fill-red-500" : ""} />
+        <button
+          onClick={() => {
+            DeleteCard();
+          }}
+          className="ml-2 cursor-pointer hover:fill-gray-100"
+        >
+          <Trash className="cursor-pointer" />
         </button>
       </div>
     </div>
   );
 }
 
-export default MusicCard;
+export default AdminMusicCard;

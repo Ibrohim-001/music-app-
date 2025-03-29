@@ -10,11 +10,12 @@ function Liked() {
       try {
         const response = await axios("http://localhost:3000/songs");
         const allSongs = response.data;
+        console.log(allSongs);
+
         const likedIds = JSON.parse(localStorage.getItem("liked") || "[]");
-        const likedSongs = allSongs.filter((song) =>
+        const likedSongs = allSongs.filter((song: any) =>
           likedIds.includes(song.id)
         );
-
         setData(likedSongs);
       } catch (error) {
         console.error("Error fetching songs:", error);

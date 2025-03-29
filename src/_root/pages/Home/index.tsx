@@ -14,10 +14,10 @@ function Home() {
   return (
     <>
       <div className="col-span-6 flex flex-col gap-10">
-        {data.map((item, id) => (
+        {data.map((item) => (
           <MusicCard
             key={item.id}
-            id={id + 1}
+            id={item.id}
             artist={item.artist}
             title={item.title}
             audio={item.url}

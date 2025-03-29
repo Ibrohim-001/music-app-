@@ -21,44 +21,7 @@
       "password": "hashed_password"
     }
   ],
-  "songs": [
-    {
-      "id": 1,
-      "title": "Song Name",
-      "artist": "Artist Name",
-      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Traditional%20Chord_first.wav"
-    },
-    {
-      "id": 2,
-      "title": "Skripka",
-      "artist": "Skrtipkachi",
-      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
-    },
-    {
-      "id": 3,
-      "title": "Piano",
-      "artist": "Ambient",
-      "url": "https://cdn.freesound.org/previews/794/794513_9497060-lq.mp3"
-    },
-    {
-      "id": 4,
-      "title": "Yugur",
-      "artist": "Yulduz Usmonova",
-      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
-    },
-    {
-      "id": 5,
-      "title": "Kok Jiguli",
-      "artist": "Saida",
-      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
-    },
-    {
-      "id": 6,
-      "title": "Na Dvoix",
-      "artist": "Dmitriy Pryanov",
-      "url": "https://ccmusic-database.github.io/en/demo/ctis/[Traditional%20Sheng]%20Performance%20Technique_Single-tonguing_first.wav"
-    }
-  ],
+  "songs": [],
   "admin": [
     {
       "id": "1",

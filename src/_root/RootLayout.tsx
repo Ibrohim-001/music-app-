@@ -8,9 +8,9 @@ function RootLayout() {
       <header className=" bg-gray-600 mb-14">
         <Navbar />
       </header>
-      <main className="max-w-[1200px] mx-auto grid grid-cols-12 h-full">
+      <main className="max-w-[1200px] mx-auto md:grid md:grid-cols-12 md:h-full xl:grid xl:grid-cols-12 xl:h-full">
         <aside className="col-span-3 h-full ">
-          <ul className="flex flex-col gap-4">
+          <ul className="flex gap-4 xl:flex-col md:flex-col ">
             <li className="font-bold text-3xl">Menu</li>
             <li className="mt-4 text-[18px] ml-[16px]">
               <Link to={"/"}>Musiqalar</Link>
