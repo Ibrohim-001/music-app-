@@ -4,10 +4,12 @@ import { Outlet } from "react-router";
 function AuthLayout() {
   return (
     <>
-      <header className=" bg-gray-600 mb-14">
+      {/* <header className=" bg-gray-600 mb-14">
         <Navbar />
-      </header>
-      <Outlet />
+      </header> */}
+      <div className="bg-blue-600 h-[100vh] ">
+        <Outlet />
+      </div>
     </>
   );
 }

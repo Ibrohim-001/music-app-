@@ -21,7 +21,50 @@
       "password": "hashed_password"
     }
   ],
-  "songs": [],
+  "songs": [
+    {
+      "id": 1,
+      "title": "Yulduz",
+      "autor": "YULDUZ USMONOVA",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    },
+    {
+      "id": 2,
+      "title": "asd",
+      "autor": "asda",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    },
+    {
+      "id": "11",
+      "title": "asd",
+      "autor": "asda",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    },
+    {
+      "id": "11",
+      "title": "asd",
+      "autor": "asda",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    },
+    {
+      "id": "111",
+      "title": "asd",
+      "autor": "asd",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    },
+    {
+      "id": "1111",
+      "title": "asd",
+      "autor": "asd",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    },
+    {
+      "id": "11111",
+      "title": "asd",
+      "autor": "asd",
+      "link": "http://dl.mp3media.net/Uzbek/Doston%20Ergashev%20-%20Begonaman.mp3"
+    }
+  ],
   "admin": [
     {
       "id": "1",

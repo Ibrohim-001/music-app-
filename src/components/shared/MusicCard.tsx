@@ -10,6 +10,7 @@ type MusicCardProps = {
 
 function MusicCard({ id, artist, title, audio }: MusicCardProps) {
   const [isLiked, setIsLiked] = useState(false);
+  
 
   useEffect(() => {
     const likedSongs = JSON.parse(localStorage.getItem("liked") || "[]");
@@ -39,7 +40,11 @@ function MusicCard({ id, artist, title, audio }: MusicCardProps) {
       </div>
       <div className="flex items-center">
         <audio className="w-full" controls>
-          <source src={audio} type="audio/wav" />
+          <source
+            src={
+              audio
+            }
+          />
         </audio>
         <button onClick={toggleLike} className="ml-2">
           <Heart className={isLiked ? "fill-red-500" : ""} />

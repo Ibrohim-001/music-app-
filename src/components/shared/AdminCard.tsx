@@ -44,7 +44,7 @@ function AdminMusicCard({ id, artist, title, audio }: MusicCardProps) {
       </div>
       <div className="flex items-center">
         <audio className="w-full" controls>
-          <source src={audio} type="audio/wav" />
+          <source src={audio} type="audio/mp3" />
         </audio>
         <button
           onClick={() => {

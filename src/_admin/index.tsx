@@ -1,126 +1,104 @@
-import Navbar from "@/components/shared/Navbar";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router";
-import { useState } from "react";
-import AudioConverter from "@/components/shared/AudioConvertor";
-import axios from "axios";
-import MusicCard from "@/components/shared/MusicCard";
-import AdminMusicCard from "@/components/shared/AdminCard";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-function Admin() {
-  const [title, setTitle] = React.useState("");
-  const [autor, setAutor] = React.useState("");
-  const [link, setLink] = React.useState("");
-  const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!localStorage.getItem("auth")) {
-  //     navigate("/");
-  //     console.log("asdf");
-  //   } else {
-  //     let res = JSON.parse(localStorage.getItem("auth") || "[]");
-  //     console.log(res);
-  //     if (
-  //       res[0].username == "admin@example.com" &&
-  //       res[0].password == "hashed_password"
-  //     ) {
-  //       navigate("/admin12345678");
-  //       console.log("asfdioh");
-  //     } else {
-  //       navigate("/");
-  //     }
-  //   }
-  // }, []);
-  const [id, setId] = React.useState(1);
-  const findLatesIndex = async () => {
-    const res = (await axios.get("http://localhost:3000/songs")).data;
-    res.map((item, id) => {
-      setId(item.id + 1);
-    });
-  };
-  const [data, setData] = React.useState([]);
-  async function getSongs() {
-    setData((await axios("http://localhost:3000/songs")).data);
-  }
+export default function ProfileEditForm() {
+  const [formData, setFormData] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    website: "",
+    facebook: "",
+    twitter: "",
+  });
+
   useEffect(() => {
-    getSongs();
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) return;
+
+      try {
+        const response = await fetch("https://api.example.com/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          setFormData(data);
+        } else {
+          alert("Failed to load profile data.");
+        }
+      } catch (error) {
+        console.error("Error loading profile:", error);
+        alert("An error occurred while loading your profile.");
+      }
+    };
+
+    fetchProfile();
   }, []);
 
-  findLatesIndex();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const PostUser = async () => {
+  const handleSave = async () => {
+    const token = localStorage.getItem("jwtToken");
+    if (!token) return alert("User not authenticated.");
+
     try {
-      let response = await axios.post("http://localhost:3000/songs", {
-        id,
-        title,
-        autor,
-        link,
+      const response = await fetch("https://api.example.com/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (response.ok) {
+        alert("Profile updated successfully!");
+      } else {
+        alert("Failed to update profile.");
+      }
     } catch (error) {
-      console.error("Error posting data:", error);
+      console.error("Error updating profile:", error);
+      alert("An error occurred while updating your profile.");
     }
   };
 
   return (
-    <>
-      <header className=" bg-gray-600 mb-14">
-        <Navbar />
-      </header>
-      <main>
-        <p className="w-[200px] mx-auto text-3xl mb-5">Add Music</p>
-        <form className="flex rounded-md flex-col items-center h-[400px] justify-center border p-10 max-w-[400px] mx-auto">
-          <div>
-            <Label className="text-2xl mt-2">Title</Label>
+    <Card className="max-w-xl mx-auto p-6 shadow-lg">
+      <CardContent>
+        <h2 className="text-2xl font-semibold mb-4">Account Settings</h2>
+        {[
+          { label: "Email address", name: "email", type: "email" },
+          { label: "First name", name: "firstName", type: "text" },
+          { label: "Last name", name: "lastName", type: "text" },
+          { label: "Website", name: "website", type: "url" },
+          { label: "Facebook", name: "facebook", type: "url" },
+          { label: "Twitter", name: "twitter", type: "url" },
+        ].map(({ label, name, type }) => (
+          <div key={name} className="mb-4">
+            <Label htmlFor={name}>{label}</Label>
             <Input
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-[300px] mt-3"
-              placeholder="MusiqaNomi"
+              id={name}
+              name={name}
+              type={type}
+              value={formData[name]}
+              onChange={handleChange}
+              className="mt-1 w-full"
             />
           </div>
-          <div className="mt-2">
-            <Label className="text-2xl mt-10">Musiqa Avtori</Label>
-            <Input
-              onChange={(e) => setAutor(e.target.value)}
-              type="text"
-              className="w-[300px] mt-3"
-              placeholder="Autor"
-            />
-          </div>
-          <div className="mt-2">
-            <Label className="text-2xl mt-10">Musiqa Linki</Label>
-            <Input
-              onChange={(e) => setLink(e.target.value)}
-              type="text"
-              className="w-[300px] mt-3"
-              placeholder="Link"
-            />
-          </div>
-
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              PostUser();
-            }}
-            className="bg-black rounded text-white w-full py-2 mt-10"
-          >
-            Add Music
-          </button>
-        </form>
-        <div className="col-span-6 w-[700px] mx-auto flex flex-col gap-10">
-          {data.map((item) => (
-            <AdminMusicCard
-              key={item.id}
-              id={item.id}
-              artist={item.artist}
-              title={item.title}
-              audio={item.url}
-            />
-          ))}
-        </div>
-      </main>
-    </>
+        ))}
+        <Button onClick={handleSave} className="w-full mt-4">
+          Save Changes
+        </Button>
+      </CardContent>
+    </Card>
   );
 }
-
-export default Admin;
